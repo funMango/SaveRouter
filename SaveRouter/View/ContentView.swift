@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    let container = AppDIContainer()
+    
     var body: some View {
         VStack {
-            ScreenshotView()
+            ScreenshotView(viewModel: container.getScreenshotViewModel())
+                .padding(.bottom, 5)
+            
+            Divider()
             
             Spacer()
         }

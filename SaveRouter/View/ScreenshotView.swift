@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ScreenshotView: View {
+    @StateObject var viewModel: ScreenshotViewModel
+    
     var body: some View {
         HStack {                
             VStack(alignment: .leading) {
@@ -8,7 +10,7 @@ struct ScreenshotView: View {
                     .font(.headline)
                     .padding(.bottom, 3)
                 
-                Text("현재경로: /Users/minho/Desktop/Screenshots")
+                Text("현재경로: \(viewModel.currentPath)")
                     .font(.caption)
                     .foregroundStyle(.gray)
             }
@@ -17,15 +19,15 @@ struct ScreenshotView: View {
             Spacer()
             
             Button {
-                
+                viewModel.selectFolder()
             } label: {
-                Text("경로 설정")
-                    
+                Text("경로 설정")                    
             }
         }
     }
 }
 
 #Preview {
-    ScreenshotView()
-} 
+    let container = AppDIContainer()
+    ScreenshotView(viewModel: container.getScreenshotViewModel())
+}
